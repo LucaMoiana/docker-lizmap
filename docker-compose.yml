@@ -10,9 +10,9 @@ services:
      - project:/home
      - var:/var/www/websig/lizmap/var
     environment:
-     - VIRTUAL_HOST: lizmap.officinecartografiche.net
-     - LETSENCRYPT_HOST: lizmap.officinecartografiche.net
-     - LETSENCRYPT_EMAIL: luca_moiana@hotmail.com
+       VIRTUAL_HOST: lizmap.officinecartografiche.net
+       LETSENCRYPT_HOST: lizmap.officinecartografiche.net
+       LETSENCRYPT_EMAIL: luca_moiana@hotmail.com
     depends_on:
       - postgis
       - qgiserver
@@ -59,9 +59,9 @@ services:
     image: chorss/docker-pgadmin4
     restart: on-failure
     environment:
-      - VIRTUAL_HOST: pgadmin.officinecartografiche.net
-      - LETSENCRYPT_HOST: pgadmin.officinecartografiche.net
-      - LETSENCRYPT_EMAIL: luca_moiana@hotmail.com
+        VIRTUAL_HOST: pgadmin.officinecartografiche.net
+        LETSENCRYPT_HOST: pgadmin.officinecartografiche.net
+        LETSENCRYPT_EMAIL: luca_moiana@hotmail.com
     ports:
       - 5050:5050
     volumes:
@@ -71,9 +71,9 @@ services:
     image: portainer/portainer
     restart: always
     environment:
-     - VIRTUAL_HOST: portainer.officinecartografiche.net
-     - LETSENCRYPT_HOST: portainer.officinecartografiche.net
-     - LETSENCRYPT_EMAIL: luca_moiana@hotmail.com
+       VIRTUAL_HOST: portainer.officinecartografiche.net
+       LETSENCRYPT_HOST: portainer.officinecartografiche.net
+       LETSENCRYPT_EMAIL: luca_moiana@hotmail.com
     ports:
      - 9000:9000
     volumes:
