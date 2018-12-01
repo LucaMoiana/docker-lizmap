@@ -4,11 +4,15 @@ services:
     image: jancelin/docker-lizmap:3.2rc6
     restart: on-failure
     ports:
-     - 80:80
-     - 443:443
+     - 8080:80
+     - 444:443
     volumes:
      - project:/home
      - var:/var/www/websig/lizmap/var
+    environment:
+     - VIRTUAL_HOST: lizmap.officinecartografiche.net
+     - LETSENCRYPT_HOST: lizmap.officinecartografiche.net
+     - LETSENCRYPT_EMAIL: luca_moiana@hotmail.com
     depends_on:
       - postgis
       - qgiserver
@@ -46,14 +50,18 @@ services:
     environment:
       - ALLOW_IP_RANGE=0.0.0.0/0
       - POSTGRES_USER=docker
-      - POSTGRES_DBNAME=geopoppy
-      - POSTGRES_DUMP=geopoppy.sql
+      - POSTGRES_DBNAME=gis
+      - POSTGRES_DUMP=gis.sql
     volumes:
       - postgres:/var/lib/postgresql
       
   pgadmin4:
     image: chorss/docker-pgadmin4
     restart: on-failure
+    environment:
+      - VIRTUAL_HOST: pgadmin.officinecartografiche.net
+      - LETSENCRYPT_HOST: pgadmin.officinecartografiche.net
+      - LETSENCRYPT_EMAIL: luca_moiana@hotmail.com
     ports:
       - 5050:5050
     volumes:
@@ -62,20 +70,24 @@ services:
   portainer:
     image: portainer/portainer
     restart: always
+    environment:
+     - VIRTUAL_HOST: portainer.officinecartografiche.net
+     - LETSENCRYPT_HOST: portainer.officinecartografiche.net
+     - LETSENCRYPT_EMAIL: luca_moiana@hotmail.com
     ports:
      - 9000:9000
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock
      - portainer:/data
      
-  cloud:
-    image: coderaiser/cloudcmd:latest-alpine
-    restart: always
-    ports:
-      - 8000:8000
-    volumes:
+  #cloud:
+  #  image: coderaiser/cloudcmd:latest-alpine
+  #  restart: always
+  #  ports:
+  #    - 8000:8000
+  #  volumes:
 #      - ~:/root
-      - project:/mnt/fs
+  #    - project:/mnt/fs
      
 volumes:
    portainer:
